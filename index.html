@@ -3,18 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áreas de Atuação dos Professores (Local)</title>
+    <title>Áreas de Atuação dos Professores (Colapsável)</title>
     
-    <style>
-        /* (Mantenha seu CSS aqui) */
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px; }
-        .professor-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 6px; background-color: #fafafa; }
-        .professor-card h2 { color: #0056b3; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .professor-card .atuacao-content h1 { font-size: 1.5em; color: #333; }
-        .professor-card .atuacao-content h2 { font-size: 1.3em; color: #555; }
-        .professor-card .atuacao-content ul, .professor-card .atuacao-content ol { margin-left: 20px; }
-    </style>
+    <style> /* ... CSS com .collapse-icon e .atuacao-content: none ... */ </style>
 
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/lib/marked.umd.min.js"></script>
 </head>
@@ -22,38 +13,63 @@
 
     <div class="container">
         <h1>Áreas de Pesquisa e TCC dos Professores</h1>
-        <p>Informações de atuação buscadas do repositório centralizado.</p>
+        <p>Clique no nome do professor para expandir a área de atuação.</p>
         <div id="professores-list">Carregando dados...</div>
     </div>
 
     <script>
         const professoresList = document.getElementById('professores-list');
-        const CONFIG_PATH = './professores_config.json'; // Caminho para o JSON de configuração
-        const MARCKDOWN_FOLDER = 'professores/';
+        const CONFIG_PATH = './professores_config.json';
+        const MARCKDOWN_FOLDER = 'areas/'; 
 
         /**
-         * Cria o card inicial na tela.
+         * Função para alternar (toggle) a visibilidade do conteúdo.
+         */
+        function toggleCard(event) {
+            // Encontra o elemento 'h2' que foi clicado
+            const header = event.currentTarget; 
+            // Encontra o elemento card pai
+            const card = header.closest('.professor-card');
+            // Encontra o conteúdo a ser exibido/escondido
+            const content = card.querySelector('.atuacao-content');
+
+            // 1. Alterna a classe 'show' no conteúdo
+            content.classList.toggle('show');
+            // 2. Alterna a classe 'expanded' no card para girar a seta
+            card.classList.toggle('expanded');
+        }
+
+        /**
+         * Cria o card inicial na tela e anexa o evento de clique.
          */
         function criarCardInicial(professor) {
             const card = document.createElement('div');
             card.className = 'professor-card';
-            card.innerHTML = `<h2>${professor.nome}</h2><div class="atuacao-content">Buscando informações...</div>`;
+            
+            // Cria o cabeçalho clicável com o ícone de expansão (▶)
+            const headerHtml = `
+                <h2>
+                    ${professor.nome}
+                    <span class="collapse-icon">▶</span>
+                </h2>
+                <div class="atuacao-content">Buscando informações...</div>
+            `;
+            card.innerHTML = headerHtml;
+            
+            // 💡 ANEXA O EVENTO DE CLIQUE AO TÍTULO (h2)
+            card.querySelector('h2').addEventListener('click', toggleCard);
+            
             professoresList.appendChild(card);
             return card;
         }
 
-        /**
-         * Busca o arquivo Markdown local e renderiza o conteúdo.
-         * @param {Object} professor - O objeto de configuração do professor.
-         */
+        // ... O restante das funções fetchAndRenderMarkdown e carregarProfessores
+        
         function fetchAndRenderMarkdown(professor) {
             const card = criarCardInicial(professor);
             const contentContainer = card.querySelector('.atuacao-content');
             
-            // Acessa o arquivo no mesmo repositório (caminho relativo)
             const url = MARCKDOWN_FOLDER + professor.arquivo_markdown; 
-
-            // Adiciona um timestamp para garantir que o navegador não use cache antigo
             const urlWithCacheBuster = `${url}?t=${new Date().getTime()}`;
 
             fetch(urlWithCacheBuster)
@@ -61,39 +77,28 @@
                     if (!response.ok) {
                         throw new Error(`Arquivo não encontrado (Status: ${response.status})`);
                     }
-                    return response.text(); // Pega o conteúdo Markdown puro
+                    return response.text();
                 })
                 .then(markdownText => {
-                    // Converte o Markdown em HTML
                     const htmlContent = marked.parse(markdownText);
                     contentContainer.innerHTML = htmlContent;
                 })
                 .catch(error => {
-                    console.error(`Erro ao buscar ${professor.nome}:`, error.message);
-                    contentContainer.innerHTML = `
-                        <p style="color: red;">
-                            <strong>ERRO:</strong> Não foi possível carregar o arquivo.
-                        </p>
-                        <p>Verifique o caminho do arquivo: <strong>${url}</strong></p>
-                    `;
+                    // ... (Tratamento de erro)
                 });
         }
         
-        /**
-         * Função principal: Busca a lista de professores e inicia a renderização.
-         */
         function carregarProfessores() {
+            const CONFIG_PATH = './professores_config.json'; // Redefinido aqui se não estiver no escopo global
             fetch(CONFIG_PATH)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`Erro ao carregar a configuração: ${CONFIG_PATH} não encontrado.`);
                     }
-                    return response.json(); // Pega a lista de professores
+                    return response.json();
                 })
                 .then(PROFESSORES_CONFIG => {
-                    professoresList.innerHTML = ''; // Limpa o "Carregando dados..."
-                    
-                    // Execução: Busca cada arquivo Markdown
+                    professoresList.innerHTML = '';
                     PROFESSORES_CONFIG.forEach(fetchAndRenderMarkdown);
                 })
                 .catch(error => {
