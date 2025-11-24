@@ -3,17 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áreas de Atuação dos Professores (Colapsável)</title>
+    <title>Áreas de Atuação dos Professores</title>
     
-    <style> /* ... CSS com .collapse-icon e .atuacao-content: none ... */ </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #007bff; /* Azul primário */
+            --secondary-color: #f8f9fa; /* Cinza claro de fundo */
+            --text-color: #343a40; /* Texto escuro */
+            --border-color: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* CARD DO PROFESSOR */
+        .professor-card {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s, background-color 0.3s;
+        }
+        .professor-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: #f1f7fe; /* Leve destaque ao passar o mouse */
+        }
+
+        /* CABEÇALHO CLICÁVEL */
+        .professor-card h2 {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 1.25em;
+            color: var(--text-color);
+            background-color: #e9ecef; /* Fundo levemente cinza */
+            border-bottom: none;
+        }
+        
+        /* ÍCONE DE EXPANSÃO */
+        .collapse-icon {
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+
+        /* Gira o ícone (▼ vira ►) quando expandido */
+        .expanded .collapse-icon {
+            transform: rotate(-180deg);
+        }
+
+        /* CONTEÚDO (Colapsado por padrão) */
+        .atuacao-content {
+            display: none; /* COMEÇA COLAPSADO */
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Exibe o conteúdo quando a classe 'show' é ativada */
+        .atuacao-content.show {
+            display: block;
+        }
+
+        /* Estilos para o Markdown dentro do conteúdo */
+        .atuacao-content h1, .atuacao-content h2 { 
+            color: var(--primary-color); 
+            font-size: 1.4em; 
+            margin-top: 15px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 5px;
+        }
+        .atuacao-content ul, .atuacao-content ol { 
+            padding-left: 25px; 
+            margin-bottom: 15px;
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/lib/marked.umd.min.js"></script>
 </head>
 <body>
 
     <div class="container">
-        <h1>Áreas de Pesquisa e TCC dos Professores</h1>
-        <p>Clique no nome do professor para expandir a área de atuação.</p>
+        <h1>🔍 Áreas de Atuação e Orientação</h1>
+        <p>Clique no nome do professor para visualizar as áreas de pesquisa detalhadas.</p>
         <div id="professores-list">Carregando dados...</div>
     </div>
 
@@ -26,16 +125,12 @@
          * Função para alternar (toggle) a visibilidade do conteúdo.
          */
         function toggleCard(event) {
-            // Encontra o elemento 'h2' que foi clicado
             const header = event.currentTarget; 
-            // Encontra o elemento card pai
             const card = header.closest('.professor-card');
-            // Encontra o conteúdo a ser exibido/escondido
             const content = card.querySelector('.atuacao-content');
 
-            // 1. Alterna a classe 'show' no conteúdo
+            // Alterna as classes para exibir o conteúdo e girar o ícone
             content.classList.toggle('show');
-            // 2. Alterna a classe 'expanded' no card para girar a seta
             card.classList.toggle('expanded');
         }
 
@@ -46,28 +141,31 @@
             const card = document.createElement('div');
             card.className = 'professor-card';
             
-            // Cria o cabeçalho clicável com o ícone de expansão (▶)
-            const headerHtml = `
-                <h2>
-                    ${professor.nome}
-                    <span class="collapse-icon">▶</span>
-                </h2>
-                <div class="atuacao-content">Buscando informações...</div>
+            const header = document.createElement('h2');
+            header.innerHTML = `
+                <span>${professor.nome}</span>
+                <span class="collapse-icon">▼</span> 
             `;
-            card.innerHTML = headerHtml;
             
-            // 💡 ANEXA O EVENTO DE CLIQUE AO TÍTULO (h2)
-            card.querySelector('h2').addEventListener('click', toggleCard);
+            // 💡 ANEXA O EVENTO DE CLIQUE AO TÍTULO
+            header.addEventListener('click', toggleCard);
             
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'atuacao-content';
+            contentContainer.innerHTML = 'Carregando...';
+
+            card.appendChild(header);
+            card.appendChild(contentContainer);
             professoresList.appendChild(card);
-            return card;
+            
+            return { card, contentContainer };
         }
 
-        // ... O restante das funções fetchAndRenderMarkdown e carregarProfessores
-        
+        /**
+         * Busca o arquivo Markdown local e renderiza o conteúdo.
+         */
         function fetchAndRenderMarkdown(professor) {
-            const card = criarCardInicial(professor);
-            const contentContainer = card.querySelector('.atuacao-content');
+            const { card, contentContainer } = criarCardInicial(professor);
             
             const url = MARCKDOWN_FOLDER + professor.arquivo_markdown; 
             const urlWithCacheBuster = `${url}?t=${new Date().getTime()}`;
@@ -84,25 +182,33 @@
                     contentContainer.innerHTML = htmlContent;
                 })
                 .catch(error => {
-                    // ... (Tratamento de erro)
+                    console.error(`Erro ao buscar ${professor.nome}:`, error.message);
+                    contentContainer.innerHTML = `
+                        <p style="color: red;">
+                            <strong>ERRO:</strong> Não foi possível carregar o arquivo.
+                        </p>
+                        <small>Verifique o caminho do arquivo: <code>${url}</code></small>
+                    `;
                 });
         }
         
+        /**
+         * Função principal: Busca a lista de professores e inicia a renderização.
+         */
         function carregarProfessores() {
-            const CONFIG_PATH = './professores_config.json'; // Redefinido aqui se não estiver no escopo global
             fetch(CONFIG_PATH)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`Erro ao carregar a configuração: ${CONFIG_PATH} não encontrado.`);
+                        throw new Error(`Erro ao carregar a configuração: ${CONFIG_PATH} não encontrado. Verifique se o JSON está formatado corretamente.`);
                     }
                     return response.json();
                 })
                 .then(PROFESSORES_CONFIG => {
-                    professoresList.innerHTML = '';
+                    professoresList.innerHTML = ''; 
                     PROFESSORES_CONFIG.forEach(fetchAndRenderMarkdown);
                 })
                 .catch(error => {
-                    professoresList.innerHTML = `<div style="color: red;"><strong>ERRO FATAL:</strong> ${error.message}</div>`;
+                    professoresList.innerHTML = `<div style="color: red; padding: 15px; border: 1px solid red;"><strong>ERRO FATAL:</strong> ${error.message}</div>`;
                 });
         }
 
