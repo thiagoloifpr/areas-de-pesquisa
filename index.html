@@ -29,6 +29,7 @@
     <script>
         const professoresList = document.getElementById('professores-list');
         const CONFIG_PATH = './professores_config.json'; // Caminho para o JSON de configuração
+        const MARCKDOWN_FOLDER = 'professores/';
 
         /**
          * Cria o card inicial na tela.
@@ -50,7 +51,7 @@
             const contentContainer = card.querySelector('.atuacao-content');
             
             // Acessa o arquivo no mesmo repositório (caminho relativo)
-            const url = professor.arquivo_markdown; 
+            const url = MARCKDOWN_FOLDER + professor.arquivo_markdown; 
 
             // Adiciona um timestamp para garantir que o navegador não use cache antigo
             const urlWithCacheBuster = `${url}?t=${new Date().getTime()}`;
