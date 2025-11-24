@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Áreas de Atuação dos Professores</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .professor-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .professor-card h2 {
+            color: #0056b3;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        /* Estilos para o conteúdo Markdown */
+        .professor-card .atuacao-content h1 { font-size: 1.5em; color: #333; }
+        .professor-card .atuacao-content h2 { font-size: 1.3em; color: #555; }
+        .professor-card .atuacao-content ul, .professor-card .atuacao-content ol { margin-left: 20px; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/lib/marked.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Áreas de Pesquisa e TCC dos Professores</h1>
+        <p>Abaixo estão as áreas de atuação buscadas diretamente dos repositórios públicos de cada professor no GitHub.</p>
+        
+        <div id="professores-list">
+            </div>
+    </div>
+
+    <script>
+        // 3.1. CONFIGURAÇÃO CENTRAL (Seu JSON)
+        const PROFESSORES_CONFIG = [
+            {
+                "nome": "thiago.lo",
+                "github_username": "thiagoloifpr",
+                "repositorio_atuacao": "areas-de-pesquisa",
+                "arquivo_markdown": "areas-de-pesquisa.md"
+            },
+            // Adicione outros professores aqui, seguindo o mesmo formato
+            /*
+            {
+                "nome": "Prof. Dra. Outro Nome",
+                "github_username": "username-github-dela",
+                "repositorio_atuacao": "nome-do-repo",
+                "arquivo_markdown": "meu-arquivo.md"
+            },
+            */
+        ];
+
+        // Elemento onde os cartões dos professores serão inseridos
+        const professoresList = document.getElementById('professores-list');
+
+        /**
+         * Busca o arquivo Markdown e renderiza o conteúdo no DOM.
+         * @param {Object} professor - O objeto de configuração do professor.
+         */
+        function fetchAndRender(professor) {
+            // Constrói a URL para o conteúdo RAW (bruto) do arquivo no GitHub
+            // Assumimos que o branch principal é 'main'. Se for 'master', mude aqui.
+            const url = `https://raw.githubusercontent.com/${professor.github_username}/${professor.repositorio_atuacao}/main/${professor.arquivo_markdown}`;
+            
+            // Cria o elemento card para este professor
+            const card = document.createElement('div');
+            card.className = 'professor-card';
+            card.innerHTML = `<h2>${professor.nome}</h2><div class="atuacao-content">Buscando informações...</div>`;
+            professoresList.appendChild(card);
+
+            const contentContainer = card.querySelector('.atuacao-content');
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        // Se o arquivo não for encontrado (erro 404), lança um erro
+                        throw new Error(`Arquivo não encontrado (Status: ${response.status}) na URL: ${url}`);
+                    }
+                    return response.text(); // Pega o conteúdo como texto puro
+                })
+                .then(markdownText => {
+                    // Converte o texto Markdown em HTML usando a biblioteca marked.js
+                    // A função global 'marked' é injetada pelo script CDN
+                    const htmlContent = marked.parse(markdownText);
+
+                    // Insere o HTML convertido no container do professor
+                    contentContainer.innerHTML = htmlContent;
+                })
+                .catch(error => {
+                    console.error(`Erro ao buscar ${professor.nome}:`, error.message);
+                    // Exibe uma mensagem de erro clara para o usuário
+                    contentContainer.innerHTML = `
+                        <p style="color: red;">
+                            <strong>ERRO:</strong> Não foi possível carregar as informações.
+                        </p>
+                        <p>Verifique se o repositório <strong>${professor.repositorio_atuacao}</strong> e o arquivo <strong>${professor.arquivo_markdown}</strong> existem no perfil do GitHub <strong>${professor.github_username}</strong> e se estão públicos.</p>
+                        <small>Detalhe: ${error.message}</small>
+                    `;
+                });
+        }
+
+        // 3.2. EXECUÇÃO: Percorre a lista de professores e inicia a busca
+        PROFESSORES_CONFIG.forEach(fetchAndRender);
+    </script>
+
+</body>
+</html>
