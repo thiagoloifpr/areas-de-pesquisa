@@ -1,4 +1,4 @@
-**Professor Dr. Thiago Berticelli Ló ** | [thiago.lo@ifpr.edu.br](mailto:thiago.lo@ifpr.edu.br)
+**Professor Dr. Thiago Berticelli Ló** | [thiago.lo@ifpr.edu.br](mailto:thiago.lo@ifpr.edu.br)
 
 # Áreas de Atuação
 
