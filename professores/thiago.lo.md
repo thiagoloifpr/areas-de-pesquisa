@@ -6,10 +6,10 @@
 
 ## 1. Áreas de Atuação
 
-* **Inteligência Artificial:** Aprendizado de Máquina (Machine Learning), Redes Neurais, Visão Computacional.
+* **Inteligência Artificial:** Aprendizado de Máquina, Redes Neurais, Visão Computacional.
 * **Ciência de Dados:** Visualização de Dados (Dashboards), Análise Preditiva, Descoberta de Conhecimento em Bases de Dados (KDD), Otimização de Processos.
 * **Sistemas Embarcados:** Internet das Coisas (IoT), Robótica, Automação.
-* **Segurança da Informação:** Projetos que envolvam Criptografia, Certificados Digitais, Sistemas Autenticação.
+* **Segurança da Informação:** Projetos que envolvam Criptografia, Certificados Digitais, Sistemas de Autenticação.
 
 ## 2. Preferências para Projetos de TCC/Pesquisa
 
