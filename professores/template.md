@@ -18,17 +18,18 @@ Liste as suas principais áreas de atuação, começando pelas mais importantes,
 Detalhe o tipo de projeto que mais lhe interessa e os pré-requisitos esperados do aluno.
 
 * **Foco Principal:** Prefiro projetos que envolvam a **aplicação prática de Machine Learning** para resolver problemas da indústria ou otimizar processos.
-* **Pré-requisitos Mínimos:** O aluno deve ter concluído a disciplina de **Inteligência Artificial** ou **Desenvolvimento de APIs** e ter familiaridade com Python ou Node.js.
+* **Pré-requisitos Mínimos:** O aluno deve ter familiaridade com Python ou Node.js.
 * **Evitar:** Não tenho disponibilidade para orientar projetos de desenvolvimento puramente Web/Frontend sem uma base forte em processamento de dados ou otimização algorítmica.
 
 ## 3. Disponibilidade e Regras
 
 Informe sua disponibilidade atual para orientações e quaisquer regras específicas.
 
-* **Disponibilidade Atual:** ✅ Aberto para receber novos projetos de TCC (Máximo de 2 vagas).
+* **Disponibilidade Atual:** ✅ Aberto para receber novos projetos de TCC (Máximo de 4 vagas).
 * **Horário de Atendimento:** Agendamento prévio via e-mail. Atendimento presencial nas terças e quintas-feiras.
 * **Documentação:** Espera-se que o aluno mantenha um repositório Git/GitHub organizado para o projeto.
 
 ---
+
 
 <small>Última atualização: [DD/MM/AAAA]</small>
