@@ -23,7 +23,7 @@
 ## 3. Disponibilidade e Compromisso
 
 * **Disponibilidade Atual:** Aberto para receber novos projetos de TCC (Máximo de 4 vagas).
-* **Dedicação ao projeto:** Espera-se que o aluno dedique **tempo adequado e contínuo** ao projeto. Reuniões de **andamento e orientação** são esperadas a cada **15 dias**.
+* **Dedicação ao Projeto:** Espera-se que o aluno dedique **tempo adequado e contínuo** ao projeto. Reuniões de **andamento e orientação** são esperadas a cada **15 dias**.
 * **Documentação:** É obrigatório manter um **repositório Git/GitHub organizado** e atualizado como parte da documentação do projeto.
 * **Recomendação de Participação:** Recomenda-se que o aluno se envolva ativamente no **Projeto de Ensino de Desenvolvimento de Software** para complementar o aprendizado prático e aprimorar as habilidades de gestão de projetos.
 
