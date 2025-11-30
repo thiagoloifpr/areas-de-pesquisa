@@ -4,7 +4,7 @@
 
 ---
 
-## 1. Áreas de Atuação
+## 1. Áreas de Pesquisa
 
 * **Inteligência Artificial:** Aprendizado de Máquina, Redes Neurais, Visão Computacional.
 * **Ciência de Dados:** Visualização de Dados (Dashboards), Análise Preditiva, Descoberta de Conhecimento em Bases de Dados (KDD), Otimização de Processos.
