@@ -9,7 +9,7 @@
 * **Inteligência Artificial:** Aprendizado de Máquina, Redes Neurais, Visão Computacional.
 * **Ciência de Dados:** Visualização de Dados (Dashboards), Análise Preditiva, Descoberta de Conhecimento em Bases de Dados (KDD), Otimização de Processos.
 * **Sistemas Embarcados:** Internet das Coisas (IoT), Robótica, Automação.
-* **Segurança da Informação:** Projetos que envolvam Criptografia, Certificados Digitais, Sistemas de Autenticação.
+* **Segurança da Informação:** Projetos que envolvam Criptografia, Certificados Digitais, Sistemas de Autenticação e Controle de Acesso.
 
 ## 2. Preferências para Projetos de TCC/Pesquisa
 
@@ -18,8 +18,7 @@
 * **Evitar:** Não tenho disponibilidade para orientar projeto: 
   * Puramente Web/Frontend (sem uma base forte em processamento de dados ou otimização algorítmica).
   * Soluções Mobile.
-  * Revisão Bibliográfica pura.
-
+  
 ## 3. Disponibilidade e Compromisso
 
 * **Disponibilidade Atual:** Aberto para receber novos projetos de TCC (Máximo de 4 vagas).
@@ -30,4 +29,4 @@
 ---
 
 
-<small>Última atualização: [00/02/2026]</small>
+<small>Última atualização: [12/02/2026]</small>
