@@ -3,7 +3,7 @@
 
 
 **Professor Me. Edmar André Bellorini** | **Contato:** [edmar.bellorini@ifpr.edu.br](mailto:edmar.bellorini@ifpr.edu.br)
-
+ 
 ---
 
 ## 1. Tópicos e Palavras-Chave de Atuação

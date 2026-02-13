@@ -11,8 +11,12 @@
     "nome": "Prof. Herbert Rausch Fernandes",
     "arquivo_markdown": "herbert.md"
   },
-    {
+  {
     "nome": "Prof. Fernando de Lima Alves",
     "arquivo_markdown": "fernando.alves.md"
+  }
+  {
+    "nome": "Prof. Edmar André Bellorini",
+    "arquivo_markdown": "edmar.bellorini.md"
   }
 ]
