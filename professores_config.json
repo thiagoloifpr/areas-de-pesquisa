@@ -16,8 +16,16 @@
     "arquivo_markdown": "herbert.md"
   }, 
   {
+    "nome": "Prof. Nelson Filho",
+    "arquivo_markdown": "nelson.filho.md"
+  },
+  {
     "nome": "Prof. Ricardo da Rosa",
     "arquivo_markdown": "ricardo.rosa.md"
+  },
+  {
+    "nome": "Profa. Roberta Parcianello",
+    "arquivo_markdown": "roberta.parcianello.md"
   },
   {
     "nome": "Prof. Thiago Berticelli Ló",
