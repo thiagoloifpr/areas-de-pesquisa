@@ -1,6 +1,6 @@
 # Áreas de Pesquisa e Atuação
 
-**Professor(a):** Fernando de Lima Alves 
+**Professor(a):** Dr. Fernando de Lima Alves 
 **Contato:** fernando.alves@ifpr.edu.br
 
 ---
