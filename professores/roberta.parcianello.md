@@ -1,6 +1,6 @@
 # Áreas de Pesquisa e Atuação
 
-**Professora:**  Roberta Parcianello  | [roberta.parcianello@ifpr.edu.br](mailto:roberta.parcianello@ifpr.edu.br)
+**Professora:** Ma. Roberta Parcianello  | [roberta.parcianello@ifpr.edu.br](mailto:roberta.parcianello@ifpr.edu.br)
 
 ---
 
