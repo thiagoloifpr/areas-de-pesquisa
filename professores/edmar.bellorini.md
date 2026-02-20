@@ -22,9 +22,8 @@
 ## 3. Disponibilidade e Regras
 
 * **Disponibilidade Atual:** limite de 05 orientações
-  - Confirmados (3)
+  - Confirmados (4)
   - Aguardando confirmação (1)
-  - Livre (2).
 * **Horário de Atendimento:** agendamento prévio via e-mail. Atendimento presencial nas segundas e quintas-feiras.
 * **Documentação:** espera-se que o aluno mantenha um repositório Git/GitHub organizado para o projeto.
 
@@ -32,3 +31,4 @@
 
 
 <small>Última atualização: 14/02/2026</small>
+
