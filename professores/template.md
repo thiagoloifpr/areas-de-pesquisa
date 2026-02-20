@@ -1,6 +1,7 @@
 # Áreas de Pesquisa e Atuação
 
 **Professor(a):** [Nome Completo do Professor(a)]  
+
 **Contato:** [Seu e-mail Institucional]
 
 ---
@@ -33,3 +34,4 @@ Informe sua disponibilidade atual para orientações e quaisquer regras específ
 
 
 <small>Última atualização: [DD/MM/AAAA]</small>
+
